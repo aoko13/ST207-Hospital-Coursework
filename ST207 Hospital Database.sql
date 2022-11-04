@@ -4,14 +4,14 @@ CREATE TABLE IF NOT EXISTS "DOCTOR" (
 	"first_Name"	VARCHAR(50),
 	"last_Name"	VARCHAR(50),
 	"office"	VARCHAR(100),
-	"speciality_ID"	INT NOT NULL,
+	"speciality_ID"	INTEGER NOT NULL,
 	PRIMARY KEY("doctor_ID" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "PATIENT" (
 	"patient_ID"	INTEGER NOT NULL,
 	"first_Name"	VARCHAR(50),
 	"last_Name"	VARCHAR(50),
-	"age"	INT,
+	"age"	INTEGER,
 	"gender"	CHAR(1),
 	"email"	VARCHAR(50),
 	PRIMARY KEY("patient_ID" AUTOINCREMENT)
@@ -19,17 +19,17 @@ CREATE TABLE IF NOT EXISTS "PATIENT" (
 CREATE TABLE IF NOT EXISTS "PROCEDURE" (
 	"procedure_ID"	VARCHAR(5) NOT NULL,
 	"procedure_Name"	CHAR(50),
-	"duration"	INT,
-	"speciality_ID"	INT NOT NULL,
-	"speciality_ID2"	INT,
-	"speciality_ID3"	INT,
+	"duration"	INTEGER,
+	"speciality_ID"	INTEGER NOT NULL,
+	"speciality_ID2"	INTEGER,
+	"speciality_ID3"	INTEGER,
 	"cost"	REAL,
 	PRIMARY KEY("procedure_ID")
 );
 CREATE TABLE IF NOT EXISTS "EXAM" (
 	"exam_ID"	INTEGER NOT NULL,
-	"patient_ID"	INT NOT NULL,
-	"doctor_ID"	INT NOT NULL,
+	"patient_ID"	INTEGER NOT NULL,
+	"doctor_ID"	INTEGER NOT NULL,
 	"request_Date"	DATE,
 	"exam_Date"	DATE,
 	"results_Date"	DATE,
@@ -44,10 +44,10 @@ CREATE TABLE IF NOT EXISTS "MEDICATION" (
 	"medication_ID"	VARCHAR(5) NOT NULL,
 	"medication_Name"	CHAR(50),
 	"fabrication_Date"	CHAR(50),
-	"expiration_Date"	INT,
+	"expiration_Date"	INTEGER,
 	"controlled"	CHAR(1),
 	"unit_Price"	REAL,
-	"stock_Qty"	INT,
+	"stock_Qty"	INTEGER,
 	PRIMARY KEY("medication_ID"),
 	CHECK("fabrication_Date" < "expiration_Date")
 );
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS "APPOINTMENT" (
 	"patient_ID"	INTEGER NOT NULL,
 	"doctor_ID"	INTEGER NOT NULL,
 	"appt_Date"	DATE,
-	"duration"	INT,
+	"duration"	INTEGER,
 	"symptoms"	VARCHAR(1000),
 	PRIMARY KEY("appt_ID" AUTOINCREMENT),
 	FOREIGN KEY("patient_ID") REFERENCES "PATIENT"("patient_ID"),
